@@ -75,7 +75,7 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
 
 /* ── SHARED ── */
 .screen-inner { width: 100%; max-width: 420px; display: flex; flex-direction: column; }
-.eyebrow { font-size: 13px; font-weight: 600; color: var(--main); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; }
+.eyebrow  { font-size: 13px; font-weight: 600; color: var(--main); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; }
 .headline { font-size: clamp(26px,6.5vw,34px); font-weight: 800; color: var(--g900); line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 8px; }
 .subline  { font-size: 15px; color: var(--g500); line-height: 1.55; font-weight: 400; margin-bottom: 32px; }
 
@@ -113,6 +113,10 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
 .cta-btn:active   { transform: scale(0.98); opacity: 0.92; }
 .cta-btn:disabled { background: var(--g300); box-shadow: none; cursor: not-allowed; }
 
+/* ── SKIP BTN ── */
+.skip-btn { width: 100%; margin-top: 10px; padding: 14px; background: transparent; border: 1.8px solid var(--main); border-radius: var(--r-lg); font-family: 'Pretendard',sans-serif; font-size: 15px; font-weight: 600; color: var(--main); cursor: pointer; transition: background 0.15s, transform 0.15s; }
+.skip-btn:active { background: var(--main-light); transform: scale(0.98); }
+
 /* ── GENDER ── */
 .gender-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px; }
 .gender-card { background: var(--white); border: 2.5px solid var(--g200); border-radius: var(--r-lg); padding: 24px 16px; cursor: pointer; text-align: center; transition: border-color 0.2s, background 0.2s, transform 0.15s; user-select: none; }
@@ -122,7 +126,7 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
 .gender-label { font-size: 16px; font-weight: 700; color: var(--g700); }
 .gender-card.selected .gender-label { color: var(--main); }
 
-/* ── CAROUSEL (공통) ── */
+/* ── CAROUSEL ── */
 .carousel-section { width: 100%; margin-bottom: 24px; overflow: hidden; }
 .carousel-track-wrap { overflow: hidden; width: 100%; position: relative; }
 .carousel-track { display: flex; gap: 14px; transition: transform 0.4s cubic-bezier(0.32,0.72,0,1); will-change: transform; padding: 10px 6px 14px; }
@@ -130,9 +134,7 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
 .drink-card.selected { border-color: var(--main); box-shadow: 0 4px 24px rgba(49,84,161,0.18); }
 .drink-card:active   { transform: scale(0.96); }
 .drink-img-wrap { height: 115px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
-.drink-img { max-height: 108px; max-width: 78px; object-fit: contain; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.10)); transition: transform 0.3s cubic-bezier(0.32,0.72,0,1); }
-.drink-card.selected .drink-img { transform: scale(1.07) translateY(-4px); }
-.drink-emoji { font-size: 60px; line-height: 1; }
+.drink-emoji { font-size: 64px; line-height: 1; display: block; }
 .drink-name { font-size: 15px; font-weight: 700; color: var(--g900); margin-bottom: 3px; letter-spacing: -0.02em; }
 .drink-abv  { font-size: 13px; font-weight: 500; color: var(--g500); }
 .drink-check { position: absolute; top: 12px; right: 12px; width: 22px; height: 22px; background: linear-gradient(135deg, var(--sub), var(--main)); border-radius: 50%; display: none; align-items: center; justify-content: center; }
@@ -150,7 +152,7 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
 .counter-btn { width: 38px; height: 38px; border-radius: 50%; border: none; background: var(--sub-light); color: var(--main); font-size: 22px; font-weight: 300; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s, transform 0.1s; line-height: 1; }
 .counter-btn:active  { transform: scale(0.88); background: var(--sub-mid); }
 .counter-btn.minus   { color: var(--red); background: #fff0f0; }
-.counter-btn.minus:disabled { color: var(--g400); background: var(--g100); cursor: not-allowed; }
+.counter-btn:disabled { color: var(--g400); background: var(--g100); cursor: not-allowed; transform: none; }
 .counter-value { font-size: 28px; font-weight: 800; color: var(--g900); letter-spacing: -0.03em; min-width: 36px; text-align: center; }
 .half-toggle { display: flex; gap: 8px; margin-bottom: 32px; }
 .half-chip { flex: 1; padding: 11px; border-radius: var(--r-sm); border: 2px solid var(--g200); background: var(--white); font-family: 'Pretendard',sans-serif; font-size: 13px; font-weight: 600; color: var(--g500); cursor: pointer; text-align: center; transition: all 0.18s; }
@@ -160,36 +162,19 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
 .screen#screen-result { padding: 0; overflow: hidden; }
 .result-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
 .result-bg::after { content: ''; position: absolute; inset: 0; background: rgba(10,24,60,0.48); }
-
 .screen-result-scroll { position: relative; z-index: 1; width: 100%; height: 100vh; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; display: flex; align-items: center; justify-content: center; }
 .screen-result-scroll::-webkit-scrollbar { display: none; }
-
 .result-inner { padding: 48px 28px 56px; width: 100%; max-width: 420px; }
-
 .no-drive-label { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.82); letter-spacing: -0.01em; margin-bottom: 14px; text-align: center; }
 .time-row { display: flex; align-items: flex-end; justify-content: center; gap: 6px; margin-bottom: 10px; }
 .drive-hero-time { font-size: clamp(80px,20vw,108px); font-weight: 900; letter-spacing: -0.06em; color: white; line-height: 1; }
 .drive-ampm-inline { font-size: clamp(22px,5vw,28px); font-weight: 700; color: rgba(255,255,255,0.72); letter-spacing: 0.02em; padding-bottom: 10px; }
 .drive-hero-sub { font-size: 13px; color: rgba(255,255,255,0.50); font-weight: 400; line-height: 1.5; text-align: center; margin-bottom: 52px; }
-
 .result-btn-group { display: flex; flex-direction: column; gap: 10px; }
 .share-btn { width: 100%; padding: 18px; background: rgba(255,255,255,0.18); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); color: white; border: 1.5px solid rgba(255,255,255,0.32); border-radius: var(--r-lg); font-family: 'Pretendard',sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.15s; letter-spacing: -0.01em; }
 .share-btn:active { transform: scale(0.98); background: rgba(255,255,255,0.28); }
 .restart-btn { width: 100%; padding: 16px; background: rgba(0,0,0,0.18); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); color: rgba(255,255,255,0.60); border: 1.5px solid rgba(255,255,255,0.14); border-radius: var(--r-lg); font-family: 'Pretendard',sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.15s; }
 .restart-btn:active { transform: scale(0.98); }
-
-/* ── SKIP BTN ── */
-.skip-btn {
-  width: 100%; margin-top: 10px; padding: 14px;
-  background: transparent;
-  border: 1.8px solid var(--main);
-  border-radius: var(--r-lg);
-  font-family: 'Pretendard', sans-serif;
-  font-size: 15px; font-weight: 600;
-  color: var(--main); cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
-}
-.skip-btn:active { background: var(--main-light); transform: scale(0.98); }
 
 /* ── ANIMATIONS ── */
 @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
@@ -307,27 +292,27 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
           <div class="carousel-track" id="sojuCarouselTrack">
             <div class="drink-card" onclick="selectSoju(0)">
               <div class="drink-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="drink-img-wrap"><img class="drink-img" src="png1.png" alt="참이슬" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="drink-emoji" style="display:none">🍶</span></div>
+              <div class="drink-img-wrap"><span class="drink-emoji">🍾</span></div>
               <div class="drink-name">참이슬</div><div class="drink-abv">16.0도</div>
             </div>
             <div class="drink-card" onclick="selectSoju(1)">
               <div class="drink-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="drink-img-wrap"><img class="drink-img" src="png2.png" alt="진로" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="drink-emoji" style="display:none">🍶</span></div>
+              <div class="drink-img-wrap"><span class="drink-emoji">🍾</span></div>
               <div class="drink-name">진로</div><div class="drink-abv">16.0도</div>
             </div>
             <div class="drink-card" onclick="selectSoju(2)">
               <div class="drink-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="drink-img-wrap"><img class="drink-img" src="png3.png" alt="처음처럼" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="drink-emoji" style="display:none">🍶</span></div>
+              <div class="drink-img-wrap"><span class="drink-emoji">🍾</span></div>
               <div class="drink-name">처음처럼</div><div class="drink-abv">16.0도</div>
             </div>
             <div class="drink-card" onclick="selectSoju(3)">
               <div class="drink-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="drink-img-wrap"><img class="drink-img" src="png4.png" alt="새로" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="drink-emoji" style="display:none">🍶</span></div>
+              <div class="drink-img-wrap"><span class="drink-emoji">🍾</span></div>
               <div class="drink-name">새로</div><div class="drink-abv">15.7도</div>
             </div>
           </div>
         </div>
-        <div class="carousel-dots" id="sojuDots">
+        <div class="carousel-dots">
           <div class="dot active" id="sdot-0"></div>
           <div class="dot" id="sdot-1"></div>
           <div class="dot" id="sdot-2"></div>
@@ -443,7 +428,7 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
           <div class="drive-ampm-inline" id="driveAmPmInline"></div>
         </div>
         <div class="drive-hero-sub anim-in anim-in-d2" id="driveSubText"></div>
-        <div class="result-btn-group anim-in anim-in-d3">
+        <div class="result-btn-group anim-in anim-in-d3" id="resultBtnGroup">
           <button class="share-btn" id="shareBtn" onclick="shareImage()">SNS 캠페인 참여하기</button>
           <button class="restart-btn" id="restartBtn" onclick="restart()">처음부터 다시하기</button>
         </div>
@@ -454,28 +439,27 @@ html, body { height: 100%; background: var(--bg); font-family: 'Pretendard', -ap
 </div><!-- /app -->
 
 <script>
-/* ── STATE ── */
 var state = {
   startHour:12, startMinute:0, ampm:'am',
   weight:0, gender:null,
-  sojuIdx:null,  sojuBottles:0, sojuHalf:0,
-  beerIdx:null,  beerBottles:0, beerHalf:0
+  sojuIdx:null, sojuBottles:0, sojuHalf:0,
+  beerIdx:null, beerBottles:0, beerHalf:0
 };
 
 var sojuData = [
-  { name:'참이슬',  abv:16.0 },
-  { name:'진로',    abv:16.0 },
+  { name:'참이슬',   abv:16.0 },
+  { name:'진로',     abv:16.0 },
   { name:'처음처럼', abv:16.0 },
-  { name:'새로',    abv:15.7 }
+  { name:'새로',     abv:15.7 }
 ];
 var beerData = [
-  { name:'크러쉬',  abv:4.5 },
+  { name:'크러쉬',   abv:4.5 },
   { name:'클라우드', abv:5.0 },
-  { name:'켈리',    abv:4.5 },
-  { name:'테라',    abv:4.6 }
+  { name:'켈리',     abv:4.5 },
+  { name:'테라',     abv:4.6 }
 ];
 
-/* screens: 0=splash,1=starttime,2=weight,3=gender,4=soju,5=bottles,6=beer,7=beer-bottles,8=result */
+/* 0=splash,1=starttime,2=weight,3=gender,4=soju,5=bottles,6=beer,7=beer-bottles,8=result */
 var screens     = ['splash','starttime','weight','gender','soju','bottles','beer','beer-bottles','result'];
 var progressMap = [0, 12, 24, 36, 50, 62, 74, 86, 100];
 var currentScreen = 0;
@@ -503,8 +487,8 @@ function showScreen(idx, dir) {
   document.getElementById('backBtn').classList.toggle('visible', idx > 1);
   document.getElementById('logoTop').classList.toggle('visible', idx > 0);
 }
-function goBack()   { if (currentScreen > 1) showScreen(currentScreen - 1, 'back'); }
-function goToStep1(){ showScreen(1); }
+function goBack()    { if (currentScreen > 1) showScreen(currentScreen - 1, 'back'); }
+function goToStep1() { showScreen(1); }
 
 /* ── RESTART ── */
 function restart() {
@@ -563,140 +547,132 @@ function goToSoju() { showScreen(4); }
 
 /* ── STEP 4: 소주 캐러셀 ── */
 var sojuCarouselOffset = 0;
-function sojuCardWidth() { return (document.getElementById('sojuCarouselWrap').offsetWidth-14)/2+14; }
+function sojuCardWidth() { return (document.getElementById('sojuCarouselWrap').offsetWidth - 14) / 2 + 14; }
 function selectSoju(idx) {
-  state.sojuIdx=idx;
-  document.querySelectorAll('#sojuCarouselTrack .drink-card').forEach(function(c,i){ c.classList.toggle('selected',i===idx); });
-  document.getElementById('sojuNextBtn').disabled=false;
+  state.sojuIdx = idx;
+  document.querySelectorAll('#sojuCarouselTrack .drink-card').forEach(function(c,i){ c.classList.toggle('selected', i===idx); });
+  document.getElementById('sojuNextBtn').disabled = false;
   scrollSojuTo(idx);
 }
 function scrollSojuTo(idx) {
-  var cw=sojuCardWidth(), off=idx<=0?0:idx>=3?cw*2:cw*(idx-0);
-  if(idx===1)off=cw; if(idx===2)off=cw*2; if(idx===3)off=cw*2;
-  var t=document.getElementById('sojuCarouselTrack');
-  t.style.transition='transform 0.4s cubic-bezier(0.32,0.72,0,1)';
-  t.style.transform='translateX(-'+off+'px)';
-  sojuCarouselOffset=off;
-  for(var i=0;i<3;i++) document.getElementById('sdot-'+i).classList.remove('active');
-  document.getElementById('sdot-'+(idx<=2?idx:2)).classList.add('active');
+  var cw  = sojuCardWidth();
+  var off = idx <= 0 ? 0 : idx >= 2 ? cw * 2 : cw * idx;
+  var t   = document.getElementById('sojuCarouselTrack');
+  t.style.transition = 'transform 0.4s cubic-bezier(0.32,0.72,0,1)';
+  t.style.transform  = 'translateX(-' + off + 'px)';
+  sojuCarouselOffset = off;
+  var dotIdx = idx <= 2 ? idx : 2;
+  for (var i=0; i<3; i++) document.getElementById('sdot-'+i).classList.remove('active');
+  document.getElementById('sdot-'+dotIdx).classList.add('active');
 }
 (function(){
-  var sx=0,so=0,drag=false,wrap=document.getElementById('sojuCarouselWrap');
+  var sx=0, so=0, drag=false, wrap=document.getElementById('sojuCarouselWrap');
   function start(e){ drag=true; sx=e.touches?e.touches[0].clientX:e.clientX; so=sojuCarouselOffset; document.getElementById('sojuCarouselTrack').style.transition='none'; }
   function move(e){ if(!drag)return; var dx=(e.touches?e.touches[0].clientX:e.clientX)-sx; var no=Math.max(0,Math.min(sojuCardWidth()*2,so-dx)); document.getElementById('sojuCarouselTrack').style.transform='translateX(-'+no+'px)'; sojuCarouselOffset=no; if(e.cancelable)e.preventDefault(); }
-  function end(){ if(!drag)return; drag=false; var cw=sojuCardWidth(),n=Math.max(0,Math.min(3,Math.round(sojuCarouselOffset/cw))); scrollSojuTo(n); }
+  function end(){ if(!drag)return; drag=false; var cw=sojuCardWidth(), n=Math.max(0,Math.min(3,Math.round(sojuCarouselOffset/cw))); scrollSojuTo(n); }
   wrap.addEventListener('touchstart',start,{passive:true}); wrap.addEventListener('touchmove',move,{passive:false}); wrap.addEventListener('touchend',end);
   wrap.addEventListener('mousedown',start); window.addEventListener('mousemove',move); window.addEventListener('mouseup',end);
 })();
 function goToSojuBottles() { showScreen(5); }
-
-function skipSoju() {
-  state.sojuIdx = null; state.sojuBottles = 0; state.sojuHalf = 0;
-  showScreen(6);
-}
+function skipSoju() { state.sojuIdx=null; state.sojuBottles=0; state.sojuHalf=0; showScreen(6); }
 
 /* ── STEP 5: 소주 병 수 ── */
 function changeSojuBottles(d) {
-  state.sojuBottles=Math.max(0,Math.min(10,state.sojuBottles+d));
-  document.getElementById('sojuBottleCount').textContent=state.sojuBottles;
-  document.getElementById('sojuMinusBtn').disabled=(state.sojuBottles===0);
+  state.sojuBottles = Math.max(0, Math.min(10, state.sojuBottles+d));
+  document.getElementById('sojuBottleCount').textContent = state.sojuBottles;
+  document.getElementById('sojuMinusBtn').disabled = (state.sojuBottles === 0);
   updateSojuMl();
 }
 function setSojuHalf(v) {
-  state.sojuHalf=v;
-  document.getElementById('soju-half-none').classList.toggle('selected',v===0);
-  document.getElementById('soju-half-half').classList.toggle('selected',v===0.5);
+  state.sojuHalf = v;
+  document.getElementById('soju-half-none').classList.toggle('selected', v===0);
+  document.getElementById('soju-half-half').classList.toggle('selected', v===0.5);
   updateSojuMl();
 }
 function updateSojuMl() {
-  document.getElementById('sojuMlDisplay').textContent=((state.sojuBottles+state.sojuHalf)*360)+' ml';
+  document.getElementById('sojuMlDisplay').textContent = ((state.sojuBottles+state.sojuHalf)*360) + ' ml';
 }
 function goToBeer() { showScreen(6); }
 
 /* ── STEP 6: 맥주 캐러셀 ── */
 var beerCarouselOffset = 0;
-function beerCardWidth() { return (document.getElementById('beerCarouselWrap').offsetWidth-14)/2+14; }
+function beerCardWidth() { return (document.getElementById('beerCarouselWrap').offsetWidth - 14) / 2 + 14; }
 function selectBeer(idx) {
-  state.beerIdx=idx;
-  document.querySelectorAll('#beerCarouselTrack .drink-card').forEach(function(c,i){ c.classList.toggle('selected',i===idx); });
-  document.getElementById('beerNextBtn').disabled=false;
+  state.beerIdx = idx;
+  document.querySelectorAll('#beerCarouselTrack .drink-card').forEach(function(c,i){ c.classList.toggle('selected', i===idx); });
+  document.getElementById('beerNextBtn').disabled = false;
   scrollBeerTo(idx);
 }
 function scrollBeerTo(idx) {
-  var cw=beerCardWidth(), off=idx<=0?0:idx>=3?cw*2:cw*idx;
-  if(idx===3)off=cw*2;
-  var t=document.getElementById('beerCarouselTrack');
-  t.style.transition='transform 0.4s cubic-bezier(0.32,0.72,0,1)';
-  t.style.transform='translateX(-'+off+'px)';
-  beerCarouselOffset=off;
-  for(var i=0;i<3;i++) document.getElementById('bdot-'+i).classList.remove('active');
-  document.getElementById('bdot-'+(idx<=2?idx:2)).classList.add('active');
+  var cw  = beerCardWidth();
+  var off = idx <= 0 ? 0 : idx >= 2 ? cw * 2 : cw * idx;
+  var t   = document.getElementById('beerCarouselTrack');
+  t.style.transition = 'transform 0.4s cubic-bezier(0.32,0.72,0,1)';
+  t.style.transform  = 'translateX(-' + off + 'px)';
+  beerCarouselOffset = off;
+  var dotIdx = idx <= 2 ? idx : 2;
+  for (var i=0; i<3; i++) document.getElementById('bdot-'+i).classList.remove('active');
+  document.getElementById('bdot-'+dotIdx).classList.add('active');
 }
 (function(){
-  var sx=0,so=0,drag=false,wrap=document.getElementById('beerCarouselWrap');
+  var sx=0, so=0, drag=false, wrap=document.getElementById('beerCarouselWrap');
   function start(e){ drag=true; sx=e.touches?e.touches[0].clientX:e.clientX; so=beerCarouselOffset; document.getElementById('beerCarouselTrack').style.transition='none'; }
   function move(e){ if(!drag)return; var dx=(e.touches?e.touches[0].clientX:e.clientX)-sx; var no=Math.max(0,Math.min(beerCardWidth()*2,so-dx)); document.getElementById('beerCarouselTrack').style.transform='translateX(-'+no+'px)'; beerCarouselOffset=no; if(e.cancelable)e.preventDefault(); }
-  function end(){ if(!drag)return; drag=false; var cw=beerCardWidth(),n=Math.max(0,Math.min(3,Math.round(beerCarouselOffset/cw))); scrollBeerTo(n); }
+  function end(){ if(!drag)return; drag=false; var cw=beerCardWidth(), n=Math.max(0,Math.min(3,Math.round(beerCarouselOffset/cw))); scrollBeerTo(n); }
   wrap.addEventListener('touchstart',start,{passive:true}); wrap.addEventListener('touchmove',move,{passive:false}); wrap.addEventListener('touchend',end);
   wrap.addEventListener('mousedown',start); window.addEventListener('mousemove',move); window.addEventListener('mouseup',end);
 })();
 function goToBeerBottles() { showScreen(7); }
-
-function skipBeer() {
-  state.beerIdx = null; state.beerBottles = 0; state.beerHalf = 0;
-  calculate();
-}
+function skipBeer() { state.beerIdx=null; state.beerBottles=0; state.beerHalf=0; calculate(); }
 
 /* ── STEP 7: 맥주 병 수 ── */
 function changeBeerBottles(d) {
-  state.beerBottles=Math.max(0,Math.min(10,state.beerBottles+d));
-  document.getElementById('beerBottleCount').textContent=state.beerBottles;
-  document.getElementById('beerMinusBtn').disabled=(state.beerBottles===0);
+  state.beerBottles = Math.max(0, Math.min(10, state.beerBottles+d));
+  document.getElementById('beerBottleCount').textContent = state.beerBottles;
+  document.getElementById('beerMinusBtn').disabled = (state.beerBottles === 0);
   updateBeerMl();
 }
 function setBeerHalf(v) {
-  state.beerHalf=v;
-  document.getElementById('beer-half-none').classList.toggle('selected',v===0);
-  document.getElementById('beer-half-half').classList.toggle('selected',v===0.5);
+  state.beerHalf = v;
+  document.getElementById('beer-half-none').classList.toggle('selected', v===0);
+  document.getElementById('beer-half-half').classList.toggle('selected', v===0.5);
   updateBeerMl();
 }
 function updateBeerMl() {
-  document.getElementById('beerMlDisplay').textContent=((state.beerBottles+state.beerHalf)*500)+' ml';
+  document.getElementById('beerMlDisplay').textContent = ((state.beerBottles+state.beerHalf)*500) + ' ml';
 }
 
 /* ── CALCULATE ── */
 function calculate() {
   var P = state.weight;
-  var R = state.gender==='male' ? 0.86 : 0.64;
+  var R = state.gender === 'male' ? 0.86 : 0.64;
 
-  // 소주 알코올
-  var soju = sojuData[state.sojuIdx] || { abv:16.0 };
+  var soju   = sojuData[state.sojuIdx] || { abv:16.0 };
   var sojuMl = (state.sojuBottles + state.sojuHalf) * 360;
-  var A_soju = sojuMl * (soju.abv/100) * 0.7894;
+  var A_soju = sojuMl * (soju.abv / 100) * 0.7894;
 
-  // 맥주 알코올
-  var beer = state.beerIdx !== null ? beerData[state.beerIdx] : { abv:0 };
+  var beer   = state.beerIdx !== null ? beerData[state.beerIdx] : { abv:0 };
   var beerMl = (state.beerBottles + state.beerHalf) * 500;
-  var A_beer = beerMl * (beer.abv/100) * 0.7894;
+  var A_beer = beerMl * (beer.abv / 100) * 0.7894;
 
-  var A = A_soju + A_beer;
-  var peakBac = (A * 0.7) / (10 * P * R);
+  var A            = A_soju + A_beer;
+  var peakBac      = (A * 0.7) / (10 * P * R);
   var hoursAfterT1 = 1.5 + peakBac / 0.03;
 
   var t1H = state.startHour % 12;
-  if (state.ampm==='pm') t1H += 12;
-  var t1Min = t1H * 60 + state.startMinute;
-  var t2Min = t1Min + Math.ceil(hoursAfterT1 * 60);
-  var t2H24 = Math.floor(t2Min/60) % 24;
-  var t2M   = t2Min % 60;
+  if (state.ampm === 'pm') t1H += 12;
+  var t1Min  = t1H * 60 + state.startMinute;
+  var t2Min  = t1Min + Math.ceil(hoursAfterT1 * 60);
+  var t2H24  = Math.floor(t2Min / 60) % 24;
+  var t2M    = t2Min % 60;
   var ampm12 = t2H24 < 12 ? 'AM' : 'PM';
   var t2H12  = t2H24 % 12 || 12;
-  var dayExtra = Math.floor(t2Min/1440);
-  var dayNote  = dayExtra > 0 ? '+'+dayExtra+'일 ' : '';
-  var t1Label  = (state.ampm==='am'?'오전':'오후')+' '+state.startHour+':'+pad(state.startMinute)+' 음주 종료 기준 · 추정치';
+  var dayExtra = Math.floor(t2Min / 1440);
+  var dayNote  = dayExtra > 0 ? '+' + dayExtra + '일 ' : '';
+  var t1Label  = (state.ampm==='am'?'오전':'오후') + ' ' + state.startHour + ':' + pad(state.startMinute) + ' 음주 종료 기준 · 추정치';
 
-  // 배경: 도수 합계 기준 (소주 1병=16도 단위)
-  // back1: ~16(소주1병) / back2: ~32(2병) / back3: ~48(3병) / back4: ~64(4병) / back5: 64초과(5병+)
+  /* 배경: 도수 합계 기준 (소주 1병=16도 단위)
+     back1: ≤16 / back2: ≤32 / back3: ≤48 / back4: ≤64 / back5: >64 */
   var sojuAbvSum = (state.sojuBottles + state.sojuHalf) * soju.abv;
   var beerAbvSum = state.beerIdx !== null ? (state.beerBottles + state.beerHalf) * beer.abv : 0;
   var totalAbvSum = sojuAbvSum + beerAbvSum;
@@ -704,10 +680,10 @@ function calculate() {
             : totalAbvSum <= 32 ? 2
             : totalAbvSum <= 48 ? 3
             : totalAbvSum <= 64 ? 4 : 5;
-  document.getElementById('resultBg').style.backgroundImage = 'url(back'+bgNum+'.png)';
 
-  document.getElementById('driveTimeDisplay').textContent = t2H12+':'+pad(t2M);
-  document.getElementById('driveAmPmInline').textContent  = dayNote+ampm12;
+  document.getElementById('resultBg').style.backgroundImage = 'url(back' + bgNum + '.jpg)';
+  document.getElementById('driveTimeDisplay').textContent = t2H12 + ':' + pad(t2M);
+  document.getElementById('driveAmPmInline').textContent  = dayNote + ampm12;
   document.getElementById('driveSubText').textContent     = t1Label;
 
   document.querySelectorAll('#screen-result .anim-in').forEach(function(el){ el.style.animation='none'; void el.offsetWidth; el.style.animation=''; });
@@ -715,28 +691,14 @@ function calculate() {
   setTimeout(function(){ document.getElementById('resultScroll').scrollTop=0; }, 100);
 }
 
-/* ── SNS 공유: 버튼 숨기고 캡처 ── */
+/* ── SNS 공유 ── */
 function shareImage() {
-  var shareBtn   = document.getElementById('shareBtn');
-  var restartBtn = document.getElementById('restartBtn');
-  var btnGroup   = shareBtn.parentElement;
-
-  // 버튼 그룹 완전히 숨김
+  var btnGroup = document.getElementById('resultBtnGroup');
   btnGroup.style.display = 'none';
-
-  // 잠시 후 캡처 (DOM 렌더링 대기)
   setTimeout(function() {
     html2canvas(document.getElementById('screen-result'), {
-      useCORS: true,
-      allowTaint: true,
-      scale: 2,
-      backgroundColor: '#0a183c',
-      logging: false,
-      onclone: function(doc) {
-        // 클론에서도 버튼 숨김 보장
-        var bg = doc.getElementById('btnGroup');
-        if (bg) bg.style.display = 'none';
-      }
+      useCORS: true, allowTaint: true, scale: 2,
+      backgroundColor: '#0a183c', logging: false
     }).then(function(canvas) {
       btnGroup.style.display = '';
       var a = document.createElement('a');
